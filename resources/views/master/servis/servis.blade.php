@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manajemen Service</h1>
+            <h1 class="m-0 text-dark">Management Service</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -38,16 +38,16 @@
                 <div class="card-header bg-info">Data Service</div>
 
                 <div class="card-body">
-                   <a class="btn btn-success btn-sm" href="/servis/tambah"><i class="fa fa-plus">&nbsp Tambah Service</i></a><br><br>
+                   <a class="btn btn-success btn-sm" href="/servis/tambah"><i class="fa fa-plus">&nbsp Add Service</i></a><br><br>
   <div class="table-responsive">
 	<table  class="table-hover table-striped table-bordered table-list tabelservis">
                   <thead>
                     <tr style="vertical-align:middle;text-align:center;font-weigth:bold">
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Name</th>
                         <th>Link</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th>Action</th>
                       </tr> 
                   </thead>
                   <tbody><tbody>

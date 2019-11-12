@@ -2,7 +2,7 @@
 @section('content')
 <br><br>
 <div class="container">
-       <div class="card-header bg-info">Edit Testimoni</div>
+       <div class="card-header bg-info">Update Testimony</div>
     <div class="row">
         <div class="col-md-8">
             <div class="card">
@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Name</label>
                             <input type="text" name="nama" class="form-control" value=" {{ $testimoni->nama }}">
 
                             @if($errors->has('nama'))
@@ -21,7 +21,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                        <label>Keterangan</label> 
+                        <label>Description</label> 
                          <textarea id="content" class="form-control" name="ket">{{ $testimoni->ket }}
                         </textarea>
                        </div>
@@ -32,7 +32,7 @@
             <div class="card">
                 <div class="card-body">
                      <div class="form-group">
-                        <label>Upload Gambar</label> 
+                        <label>Upload Image</label> 
                           <div class="row">
                              <div class="col s6">
                                <img src="{{ URL::to("$testimoni->foto")}}" id="showgambar" style="max-width:200px;max-height:200px;float:left;" />
@@ -48,6 +48,10 @@
                        </div>
                    </div>
                 </div>  
+                <div class="form-group">
+                <label>Testimony Thumbnail Alt.</label>
+                <input type="text" name="alt_teks" class="form-control" value="{{ $testimoni->alt_teks }}">
+                </div>
                  <div class="form-group">
                 <label>Status</label>
                 <select class="form-control" name="status">

@@ -36,6 +36,10 @@
                        </div>
                    </div>
                 </div>  
+                <div class="form-group">
+                <label>Banner Thumbnail Alt.</label>
+                <input type="text" name="alt_teks" class="form-control" value="{{ $banner->alt_teks }}">
+            </div>
                  <div class="form-group">
                 <label>Status</label>
                 <select class="form-control" name="status">

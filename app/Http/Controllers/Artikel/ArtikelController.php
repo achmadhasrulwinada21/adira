@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Model\Artikel\Artikel;
 use App\Model\Artikel\V_artikel;
 use App\Model\Artikel\Kategori;
+use App\Model\Artikel\Tag;
+use App\Model\Artikel\Artikel_tag;
 use App\Model\Setup\Settingweb;
 use DataTables;
 use Session;
@@ -14,7 +16,7 @@ use File;
 use App\Mail\AchmadEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
 class ArtikelController extends Controller
 {
     /**
@@ -56,7 +58,8 @@ class ArtikelController extends Controller
   }
 
     public function insert(Request $request) {
-               
+        
+
     	$this->validate($request,[
             'judul' =>'required',
             'isi_artikel' =>'required',
@@ -64,28 +67,12 @@ class ArtikelController extends Controller
             'file_artikel'=>'file|mimes:pdf|max:2048',
             'id_kategori' => 'required',
             'keyword' => 'required',
+            'alt_teks' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
          ]);
 
-//join tb_kategori n tb_artikel
-
-//  $kategori = DB::table('kategori')
-//              ->where('id', '=', $request->id_kategori)
-//              ->get(); 
-          
-//           foreach($kategori as $k){
-//               $id_kat = $k->id;
-//            }
-//  $menuutama = DB::table('artikel')
-//              ->leftJoin('kategori','artikel.id_kategori', '=', 'kategori.id')
-//              ->where('artikel.id_kategori', '=',  $id_kat)
-//              ->get(); 
-
-//              foreach ($menuutama as $item){
-//                    $request->kat = $item->kategori;
-//               }
-  //end join tb_kategori n tb_artikel 
-
-         // menyimpan data file yang diupload ke variabel $file
+        // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('foto');
         $path       = 'data_file/foto_artikel/';
 		$nama_file = $path.$file->getClientOriginalName();
@@ -107,7 +94,7 @@ class ArtikelController extends Controller
 		$tujuan_upload2 = 'data_file/file_artikel';
 		$file2->move($tujuan_upload2,$nama_file2);
         }
-        
+
         Artikel::create([
             'judul' => $request->judul,
             'isi_artikel' => $request->isi_artikel,
@@ -116,23 +103,95 @@ class ArtikelController extends Controller
             'id_kategori' => $request->id_kategori,
             'keyword' => $request->keyword,
             'language' =>$request->language,
-            'artikel_parent'=>$request->artikel_parent
-		]);
+            'artikel_parent'=>$request->artikel_parent,
+            'meta_title'=>$request->meta_title,
+            'meta_description'=>$request->meta_description,
+            'alt_teks'=>$request->alt_teks,
+            'status' => $request->status
+        ]);
+
+         $tabel_artikel = Artikel::orderBy('id', 'Asc')->get(); 
+               foreach ($tabel_artikel as $tb_artikel) {
+               $id_artikel = $tb_artikel->id;
+                }
+            
+         $tag = strtolower($request->tag);  
+         $tags = explode(',', $tag);
+                 
+        foreach ($tags as $tag) {
+
+          $slug = Str::slug($tag, '-');
+          $tagss = Tag::where('slug',$slug)->exists(); 
+
+          if($tagss <> $tag) {
+
+               $tagsave = new Tag();
+               $tagsave->name =  $tag;
+               $tagsave->slug = $slug;
+               $tagsave->save();
+           }           
+           $tabel_tag = Tag::where('slug',$slug)->get();
+              foreach ($tabel_tag as $tb_tag) {
+               $id_tag = $tb_tag->id;
+               }
+            
+               $artikel_tag = new Artikel_tag();
+               $artikel_tag->id_artikel = $id_artikel;
+               $artikel_tag->id_tag = $id_tag;
+               $artikel_tag->save();
+            }
+            
           Session::flash('sukses','Artikel Telah Ditambahkan');
-
-        //   Mail::to("testing@mail.com")->send(new AchmadEmail($request));
-
-    	return redirect('/admin/artikel');
+          return redirect('/admin/artikel');
     }
 
       public function edit($id){
       $artikel = Artikel::find($id);
-     $settingweb = Settingweb::find('001');
+      $settingweb = Settingweb::find('001');
       $kategori = Kategori::all();
-     return view('artikel.edit_artikel', ['artikel' => $artikel,'kategori' => $kategori,'settingweb' => $settingweb]);
+      $artikel_tag= DB::table('artikel_tag') 
+                    ->select(DB::raw('artikel_tag.id_artikel,artikel_tag.id_tag,tag.name,tag.slug'))
+                    ->Join('tag','artikel_tag.id_tag', '=', 'tag.id')
+                     ->where('artikel_tag.id_artikel','=',$id)
+                     ->get();
+     
+    $name=array();
+    foreach($artikel_tag as $a_tag){
+        $name[]=$a_tag->name;
+    }
+    $tag= implode(', ', $name);   
+                             
+     return view('artikel.edit_artikel', ['artikel' => $artikel,'kategori' => $kategori,'settingweb' => $settingweb,'tag'=>$tag]);
     }
     
       public function update($id, Request $request){
+           
+         $tag = strtolower($request->tag);  
+        //  $tag= str_replace(' ', ',', $tag1);
+           
+         $tags = explode(',', $tag);
+          
+         foreach ($tags as $tag) {
+
+          $slug = Str::slug($tag, '-');
+          $tagss = Tag::where('slug',$slug)->exists(); 
+
+          if($tagss <> $tag) {
+
+               $tagsave = new Tag();
+               $tagsave->name =  $tag;
+               $tagsave->slug = $slug;
+               $tagsave->save();
+           }           
+           $tabel_tag = Tag::where('slug',$slug)->get();
+              foreach ($tabel_tag as $tb_tag) {
+               $id_tag = $tb_tag->id;
+               }
+       // Artikel_tag::updateOrCreate(['id_artikel' => $id], ['id_tag' => $id_tag]);
+    $table = Artikel_tag::firstOrNew(['id_artikel' => $id], ['id_tag' => $id_tag]);
+    $table->save();   
+            }
+                
     $this->validate($request,[
 	    'judul' =>'required',
         'isi_artikel' =>'required',
@@ -140,9 +199,14 @@ class ArtikelController extends Controller
         'file_artikel'=>'file|mimes:pdf|max:2048',
         'id_kategori' => 'required',
         'keyword' => 'required',
+        'alt_teks' => 'required',
+        'meta_title' => 'required',
+        'meta_description' => 'required',
     ]);
 
     $artikel = Artikel::find($id);
+
+              
 
     if($request->file('foto') == "")
         {
@@ -173,10 +237,14 @@ class ArtikelController extends Controller
         }
     
     
-	$artikel->judul = $request->judul;
+    $artikel->alt_teks = $request->alt_teks;
+    $artikel->meta_title = $request->meta_title;
+    $artikel->meta_description = $request->meta_description;
+    $artikel->judul = $request->judul;
 	$artikel->isi_artikel = $request->isi_artikel;
     $artikel->id_kategori = $request->id_kategori;
     $artikel->keyword = $request->keyword;
+    $artikel->status = $request->status;
     $artikel->save();
     Session::flash('sukses21','Artikel Telah Diupdate');
     return redirect('/admin/artikel');

@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manajemen Testimoni</h1>
+            <h1 class="m-0 text-dark">Management Testimony</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -35,18 +35,18 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header bg-info">Data Testimoni</div>
+                <div class="card-header bg-info">Data Testimony</div>
 
                 <div class="card-body">
-                   <a class="btn btn-success btn-sm" href="/testimoni/tambah"><i class="fa fa-plus">&nbsp Tambah Testimoni</i></a><br><br>
+                   <a class="btn btn-success btn-sm" href="/testimoni/tambah"><i class="fa fa-plus">&nbsp Add Testimony</i></a><br><br>
   <div class="table-responsive">
 	<table  class="table-hover table-striped table-bordered table-list tabeltestimoni">
                   <thead>
                     <tr style="vertical-align:middle;text-align:center;font-weigth:bold">
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Name</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th>Action</th>
                       </tr> 
                   </thead>
                   <tbody><tbody>

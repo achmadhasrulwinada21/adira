@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Manajemen File</h1>
+              <h1 class="m-0 text-dark">Management File</h1>
              </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -32,16 +32,16 @@
                 <div class="card-header bg-info">Data File</div>
 
                 <div class="card-body">
-<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" style="color:white;"><i class="fa fa-plus">&nbsp Tambah File</i></a><br><br>
+<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" style="color:white;"><i class="fa fa-plus">&nbsp Add File</i></a><br><br>
   <div class="table-responsive">
 	<table  class="table-hover table-striped table-bordered table-list tabelproduk">
                   <thead>
                     <tr style="vertical-align:middle;text-align:center;font-weigth:bold">
                         <th>No</th>
                         <th>File</th>
-                        <th>Keterangan</th>
-                        <th>Kategori</th>
-                        <th>Aksi</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Action</th>
                       </tr> 
                   </thead>
                   <tbody><tbody>
@@ -56,7 +56,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-           <h4 class="modal-title">Tambah File</h4>
+           <h4 class="modal-title">Add File</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
        </div>
       <div class="modal-body">
@@ -73,16 +73,22 @@
                      </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Keterangan</label>
+                        <label for="name" class="col-sm-6 control-label">File Thumbnail Alt.</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control"  name="alt_teks"  value="" maxlength="50" required>
+                     </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control"  name="ket" placeholder="Enter keterangan" value="" maxlength="50" required>
                      </div>
                     </div>
                      <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Kategori</label>
+                        <label for="name" class="col-sm-2 control-label">Category</label>
                         <div class="col-sm-12">
                     <select name="id_kategori" class="form-control" >
-                    <option value="0" selected disabled>- Pilih Kategori File -</option>
+                    <option value="0" selected disabled>- Choose Category File -</option>
                     @foreach ($kategori as $pemilik)
                         <option value="{{ $pemilik->id }}">{{ ($pemilik->kategori) }}</option>
                     @endforeach
@@ -107,6 +113,7 @@
       $id= $i['id'];
       $ket= $i['ket'];
       $foto= $i['foto'];
+      $alt_teks= $i['alt_teks'];
       $id_kategori = $i['id_kategori'];
          ?>
 <div id="modal_edit{{ $id }}" class="modal fade" role="dialog">
@@ -138,17 +145,23 @@
                        </div>
                    </div>
                 </div> 
+                <div class="form-group">
+                        <label for="name" class="col-sm-6 control-label">File Thumbnail Alt.</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control"  name="alt_teks" value="{{ $alt_teks }}" maxlength="50" required>
+                     </div>
+                    </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Keterangan</label>
+                        <label for="name" class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control"  name="ket" value="{{ $ket }}" placeholder="Enter keterangan" value="" maxlength="50" required>
                      </div>
                     </div>
                      <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Kategori</label>
+                        <label for="name" class="col-sm-2 control-label">Category</label>
                         <div class="col-sm-12">
                     <select name="id_kategori"  class="form-control" >
-                    <option value="0" selected disabled>- Pilih Kategori File -</option>
+                    <option value="0" selected disabled>- Choose Category File -</option>
                     @foreach ($kategori as $pemilik)
                         <option value="{{ $pemilik->id }}" {{ $id_kategori == $pemilik->id ? 'selected="selected"' : '' }}>{{ ($pemilik->kategori) }}</option>
                     @endforeach

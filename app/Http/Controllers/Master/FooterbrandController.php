@@ -65,6 +65,7 @@ class FooterbrandController extends Controller
             'foto' =>'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required',
             'link' => 'required',
+            'alt_teks' => 'required',
          ]);
 
          // menyimpan data file yang diupload ke variabel $file
@@ -81,6 +82,7 @@ class FooterbrandController extends Controller
             'foto' => $nama_file,
             'status' => $request->status,
             'link' => $request->link,
+            'alt_teks' => $request->alt_teks,
         ]);
         
          Session::flash('sukses','Data Telah Ditambahkan');
@@ -100,6 +102,7 @@ class FooterbrandController extends Controller
         'foto' =>'file|image|mimes:jpeg,png,jpg|max:2048',
         'link' => 'required',
         'status' => 'required',
+        'alt_teks' => 'required',
     ]);
 
     $footerbrand = Footerbrand::find($id);
@@ -123,6 +126,7 @@ class FooterbrandController extends Controller
 	$footerbrand->ket = $request->ket;
     $footerbrand->link = $request->link;
     $footerbrand->status = $request->status;
+    $footerbrand->alt_teks = $request->alt_teks;
     $footerbrand->save();
     Session::flash('sukses21','Data Telah Diupdate');
     return redirect('/admin/footerbrand');

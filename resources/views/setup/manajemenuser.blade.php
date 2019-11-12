@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manajemen User</h1>
+            <h1 class="m-0 text-dark">Management User</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,16 +29,16 @@
                 <div class="card-header bg-info">Data User</div>
 
                 <div class="card-body">
-                   <a class="btn btn-success btn-sm" href="javascript:void(0)" id="createNewUser"><i class="fa fa-plus">&nbsp Tambah User</i></a><br><br>
+                   <a class="btn btn-success btn-sm" href="javascript:void(0)" id="createNewUser"><i class="fa fa-plus">&nbsp Add User</i></a><br><br>
                    <div class="table-responsive">
 	<table id="tabeluser" class="table-hover table-striped table-bordered table-list">
                   <thead>
                     <tr style="vertical-align:middle;text-align:center;font-weigth:bold">
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Jabatan</th>
-                        <th>Aksi</th>
+                        <th>Action</th>
                       </tr> 
                   </thead>
                   <tbody><tbody>
@@ -85,7 +85,7 @@
                           <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
                        <div class="col-md-6">
                            <select name="jabatan" id="jabatans" class="form-control" >
-                                <option value=" " selected disabled>- Pilih Role -</option>
+                                <option value=" " selected disabled>- Choose Role -</option>
                                 <option value="admin">Admin</option>
                                 <option value="member">Member</option>
                            </select>
@@ -178,7 +178,7 @@
                     </div>
                   <br>
                     <div class="col-sm-offset-2 col-sm-10" style="margin-left:65%">
-                     <button type="submit" class="btn btn-primary" id="saveBtn2" value="create">Simpan
+                     <button type="submit" class="btn btn-primary" id="saveBtn2" value="create">Save
                      </button>
                     </div>
                 </form>
@@ -215,7 +215,7 @@
                         </div>
                    <br>
                     <div class="col-sm-offset-2 col-sm-10" style="margin-left:55%">
-                     <button type="submit" class="btn btn-primary save3" id="saveBtn3" value="create">Ganti Password
+                     <button type="submit" class="btn btn-primary save3" id="saveBtn3" value="create">Change Password
                      </button>
                     </div>
                 </form>
@@ -318,6 +318,7 @@
                                 text: 'Data Telah Tersimpan',
                             })
               table.draw();
+              table_user.ajax.reload()
             },
           error: function (data) {
               console.log('Error:', data);
@@ -358,7 +359,7 @@
           }
           
       });
-       table_user.ajax.reload()
+      
     });
 
      $('body').on('click', '.editProduct', function () {

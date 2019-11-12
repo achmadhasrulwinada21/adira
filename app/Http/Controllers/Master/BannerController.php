@@ -63,6 +63,7 @@ class BannerController extends Controller
             'foto' =>'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required',
             'link' => 'required',
+            'alt_teks' => 'required',
          ]);
 
          // menyimpan data file yang diupload ke variabel $file
@@ -77,6 +78,7 @@ class BannerController extends Controller
             'foto' => $nama_file,
             'status' => $request->status,
             'link' => $request->link,
+            'alt_teks' => $request->alt_teks,
         ]);
         
          Session::flash('sukses','Banner Telah Ditambahkan');
@@ -94,6 +96,7 @@ class BannerController extends Controller
 	    'foto' =>'file|image|mimes:jpeg,png,jpg|max:2048',
         'link' => 'required',
         'status' => 'required',
+        'alt_teks' => 'required',
     ]);
 
     $banner = Banner::find($id);
@@ -113,7 +116,8 @@ class BannerController extends Controller
         }
    
     
-	$banner->link = $request->link;
+    $banner->link = $request->link;
+    $banner->alt_teks = $request->alt_teks;
     $banner->status = $request->status;
     $banner->save();
     Session::flash('sukses21','Banner Telah Diupdate');

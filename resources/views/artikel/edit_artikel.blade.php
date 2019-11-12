@@ -1,5 +1,7 @@
 @extends('layouts.index')
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap-tagsinput.css')}}">
+<?php ?>
 <br><br>
 <div class="container">
        <div class="card-header bg-info">Edit Artikel</div>
@@ -38,12 +40,36 @@
                                 </div>
                             @endif
                         </div>
+                         <div class="form-group">
+                            <label>Tag</label>
+                           <input type="text" name="tag" class="form-control" value="{{ $tag }}" data-role="tagsinput" id="tag">
+                        </div>
                 </div>
             </div>
         </div>
          <div class="col-md-4">
             <div class="card">
-                <div class="card-body"> 
+                <div class="card-body">
+                    <div class="form-group">
+                            <label>Meta Title</label>
+                            <input type="text" name="meta_title" class="form-control" value=" {{ $artikel->meta_title }}">
+
+                            @if($errors->has('meta_title'))
+                                <div class="text-danger">
+                                    {{ $errors->first('meta_title')}}
+                                </div>
+                            @endif
+                        </div>
+                      <div class="form-group">
+                            <label>Meta Description</label>
+                            <input type="text" name="meta_description" class="form-control" value=" {{ $artikel->meta_description }}">
+
+                            @if($errors->has('meta_description'))
+                                <div class="text-danger">
+                                    {{ $errors->first('meta_description')}}
+                                </div>
+                            @endif
+                        </div>
                      <div class="form-group">
                         <label>Upload Gambar</label> 
                           <div class="row">
@@ -61,7 +87,17 @@
                        </div>
                    </div>
                 </div>  
-                  <div class="form-group">
+                 <div class="form-group">
+                            <label>Article Thumbnail Alt.</label>
+                            <input type="text" name="alt_teks" class="form-control" value=" {{ $artikel->alt_teks }}">
+
+                            @if($errors->has('alt_teks'))
+                                <div class="text-danger">
+                                    {{ $errors->first('alt_teks')}}
+                                </div>
+                            @endif
+                        </div>
+                  {{-- <div class="form-group">
                         <label>Upload File (*pdf)</label> 
                           <div class="row">
                              <div class="col s6">
@@ -81,13 +117,20 @@
                         </div>
                        </div>
                    </div>
-                </div>                                     
+                </div>                                      --}}
             <div class="form-group">
                 <label>Kategori</label>
                 <select class="form-control" name="id_kategori">
                             @foreach($kategori as $role)
                  <option value="{{ $role->id }}" {{ $artikel->id_kategori == $role->id ? 'selected="selected"' : '' }}>{{ $role->kategori }}</option>
                   @endforeach    
+                </select>
+            </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" name="status">
+                <option value="1" {{ $artikel->status == 1 ? 'selected="selected"' : '' }}>Aktif</option>
+                <option value="0" {{ $artikel->status == 0 ? 'selected="selected"' : '' }}>Tidak Aktif</option>
                 </select>
             </div>
                 <div class="form-group">
@@ -99,6 +142,7 @@
 
     </div>
 </div>
+<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap-tagsinput.js')}}"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#content').summernote({

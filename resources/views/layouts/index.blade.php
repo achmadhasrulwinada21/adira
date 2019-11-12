@@ -119,9 +119,9 @@ use Illuminate\Support\Facades\DB;
         <li class="nav-item">
           <a href="{{ url('/admin/artikel') }}" class="nav-link {{ Request::is('admin/artikel') ? 'active' : '' }}"> <i class="nav-icon fas fa-newspaper"></i> <p>Article </p> </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="{{ url('/admin/kategori') }}" class="nav-link {{ Request::is('admin/kategori') ? 'active' : '' }}"> <i class="nav-icon fas fa-th-large"></i> <p>Category </p> </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a href="{{ url('/admin/menu') }}" class="nav-link {{ Request::is('admin/menu') ? 'active' : '' }}"> <i class="nav-icon fas fa-list-alt"></i> <p>Menu </p> </a>
         </li>
@@ -147,14 +147,14 @@ use Illuminate\Support\Facades\DB;
           <a href="{{ url('/admin/navbar') }}" class="nav-link {{ Request::is('admin/navbar') ? 'active' : '' }}"> <i class="nav-icon fas fa-object-ungroup"></i><p>Navbar</p></a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('/admin/category') }}" class="nav-link {{ Request::is('admin/category') ? 'active' : '' }}"> <i class="nav-icon fas fa-location-arrow"></i><p>Category</p></a>
+          <a href="{{ url('/admin/category') }}" class="nav-link {{ Request::is('admin/category') ? 'active' : '' }}"> <i class="nav-icon fas fa-location-arrow"></i><p>Category File</p></a>
         </li>
         <li class="nav-item">
           <a href="{{ url('/admin/file') }}" class="nav-link {{ Request::is('admin/file') ? 'active' : '' }}"> <i class="nav-icon fas fa-laptop"></i><p>File</p></a>
         </li>
-        <!-- <li class="nav-item">
+         <li class="nav-item">
           <a href="{{ url('/admin/settingweb') }}" class="nav-link {{ Request::is('admin/settingweb') ? 'active' : '' }}"><i class="nav-icon fas fa-cog"></i><p>Setting</p></a>
-        </li> -->
+        </li> 
         </ul>
 
 

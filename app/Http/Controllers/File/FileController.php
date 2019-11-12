@@ -56,6 +56,7 @@ class FileController extends Controller
             'foto' =>'required|max:2048',
             'ket' =>'required',
             'id_kategori' => 'required',
+            'alt_teks' => 'required',
             ]);
 
             
@@ -71,8 +72,9 @@ class FileController extends Controller
             'foto' => $nama_file,
             'ket' => $request->ket,
             'id_kategori' => $request->id_kategori,
+            'alt_teks' => $request->alt_teks,
            ]);
-         Session::flash('sukses','File Telah Ditambahkan');
+         Session::flash('sukses','File Has Been Created');
         return redirect('/admin/file');
     }
 
@@ -108,10 +110,11 @@ class FileController extends Controller
             $filess->foto = $fileName;
         }  
 
-	$filess->ket = $request->ket;
+    $filess->alt_teks = $request->alt_teks;
+    $filess->ket = $request->ket;
 	$filess->id_kategori = $request->id_kategori;
     $filess->save();
-    Session::flash('sukses','File Telah Diupdate');
+    Session::flash('sukses','File Has Been Updated');
     return redirect('/admin/file');
 }
 

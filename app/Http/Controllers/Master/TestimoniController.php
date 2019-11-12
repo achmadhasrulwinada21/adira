@@ -62,6 +62,7 @@ class TestimoniController extends Controller
             'ket' =>'required',
             'foto' =>'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required',
+            'alt_teks' => 'required',
             ]);
 
          // menyimpan data file yang diupload ke variabel $file
@@ -77,9 +78,10 @@ class TestimoniController extends Controller
             'ket' => $request->ket,
             'foto' => $nama_file,
             'status' => $request->status,
+            'alt_teks' => $request->alt_teks,
             ]);
         
-         Session::flash('sukses','Testimoni Telah Ditambahkan');
+         Session::flash('sukses','Testimony Has Been Created');
         return redirect('/admin/testimoni');
     }
 
@@ -95,6 +97,7 @@ class TestimoniController extends Controller
         'ket' =>'required',
         'foto' =>'file|image|mimes:jpeg,png,jpg|max:2048',
         'status' => 'required',
+        'alt_teks' => 'required',
     ]);
 
     $testimoni = Testimoni::find($id);
@@ -117,8 +120,9 @@ class TestimoniController extends Controller
 	$testimoni->nama = $request->nama;
 	$testimoni->ket = $request->ket;
     $testimoni->status = $request->status;
+    $testimoni->alt_teks = $request->alt_teks;
     $testimoni->save();
-    Session::flash('sukses21','Testimoni Telah Diupdate');
+    Session::flash('sukses21','Testimony Has Been Updated');
     return redirect('/admin/testimoni');
 }
 

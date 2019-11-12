@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB; 
 
 class AchmadEmail extends Mailable
 {
@@ -30,8 +31,11 @@ class AchmadEmail extends Mailable
      */
     public function build()
     {
-       return $this->from('pengirim@mail.com')
-                   ->subject('Your Subject')
+           
+     $sw = DB::table('settingweb')->where('kode', '001')->first(); 
+         
+       return $this->from($sw->email)
+                   ->subject('Selamat Datang di Website Adira Company')
                    ->view('artikel.email')
                    ->with(
                     [

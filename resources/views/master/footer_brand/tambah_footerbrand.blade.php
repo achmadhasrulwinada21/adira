@@ -37,6 +37,14 @@
     <label class="custom-file-label" for="customFile">Choose file</label>
   </div>
     <br/><br/>
+    <label>Thumbnail Alt.</label><br>
+		<input type="text" name="alt_teks" class="form-control">
+		 @if($errors->has('alt_teks'))
+            <div class="text-danger">
+             {{ $errors->first('alt_teks')}}
+           </div>
+        @endif
+		 <br/>
     <label>Link</label><br>
 		<input type="text" name="link" class="form-control" placeholder="isi Link...">
 		 @if($errors->has('link'))

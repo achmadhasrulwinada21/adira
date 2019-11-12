@@ -84,7 +84,7 @@
                      </button>
                     </div>
                 </form></div>
-           <div class="tab-pane active" id="tab_2"> 
+           <div class="tab-pane" id="tab_2"> 
                 <form action="/settingweb/update_perusahaan" method="post" class="form-horizontal" enctype="multipart/form-data">
   {{ csrf_field() }}
    {{ method_field('PUT') }}
@@ -114,6 +114,12 @@
                             <input type="text" class="form-control" id="fax" name="fax" placeholder="Enter NO Fax" value="{{ $settingweb->fax }}" maxlength="50" required>
                      </div>
                     </div>
+                     <div class="form-group" style="margin-left:12px;margin-right:12px;">
+                        <label for="name" class="col-sm-4 control-label">Email</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter NO Fax" value="{{ $settingweb->email }}" maxlength="50" required>
+                     </div>
+                    </div>
                       <div class="form-group" style="margin-left:12px;margin-right:12px;">
                         <label for="name" class="col-sm-4 control-label">Copyright</label>
                         <div class="col-sm-12">
@@ -125,7 +131,7 @@
                      </button>
                     </div>
                 </form></div>
-            <div class="tab-pane active" id="tab_3"> 
+            <div class="tab-pane" id="tab_3"> 
                <form action="/settingweb/update_sosmed" method="post" class="form-horizontal" enctype="multipart/form-data">
   {{ csrf_field() }}
    {{ method_field('PUT') }}
@@ -184,9 +190,9 @@
                             <input type="text" class="form-control" id="alt_teks_ig" name="alt_teks_ig" placeholder="Enter alt teks ig" value="{{ $settingweb->alt_teks_ig }}" maxlength="50" required>
                      </div>
                           </div>
-                          </div>
-                          <div class="form-group" style="margin-left:30px;margin-right:12px;">
-                        <label for="name" class="col-sm-6 control-label">Logo Twitter</label>
+                          </div></div>
+                    <div class="form-group" style="margin-left:30px;margin-right:12px;">
+                        <label for="name" class="col-sm-12 control-label">Logo Twitter</label>
                         <div class="col-md-12">
                           <div class="row">
                              <div class="col s6">
@@ -198,8 +204,8 @@
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                               </div>
                               <br><br>
-                               <div class="form-group">
-                        <label for="name" class="col-sm-6 control-label">Link Twitter</label>
+                      <div class="form-group">
+                        <label for="name" class="col-sm-12 control-label">Link Twitter</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="link_web" name="link_sosmed3" placeholder="Enter link web" value="{{ $settingweb->link_sosmed3 }}" maxlength="50" required>
                      </div>
@@ -212,8 +218,8 @@
                           </div>
                           </div>
                           </div>
-                        </div></div>
-                     <br><br>
+                        </div>
+                     
            <div class="col-sm-offset-2 col-sm-10" style="margin-left:30px;margin-right:12px;">
                      <button type="submit" class="btn btn-primary" id="saveBtn" value="create"><span class="fa fa-save">&nbspSave changes</span>
                      </button>

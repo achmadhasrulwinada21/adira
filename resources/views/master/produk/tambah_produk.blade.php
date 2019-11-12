@@ -2,14 +2,14 @@
 @section('content')
 <br><br>
 <div class="container">
-  <div class="card-header bg-info">Tambah Produk</div>
+  <div class="card-header bg-info">Add Product</div>
     <div class="row">
         <div class="col-md-8">
             <div class="card">
                  <div class="card-body">
 	<form action="/produk/insert" method="post" enctype="multipart/form-data">
 		{{ csrf_field() }}
-		<label>Nama</label><br>
+		<label>Name</label><br>
 		<input type="text" name="nama" class="form-control" placeholder="isi Nama...">
 		 @if($errors->has('nama'))
             <div class="text-danger">
@@ -17,7 +17,7 @@
            </div>
         @endif
 		<br/>
-        <label>Keterangan</label> <br>
+        <label>Descrption</label> <br>
 		<textarea name="ket" class="form-control" id="content"></textarea>
 		 @if($errors->has('ket'))
             <div class="text-danger">
@@ -31,12 +31,20 @@
             <div class="card">
                   <div class="card-body">
                     <br/>
-        <label>Upload Gambar</label><br>
+        <label>Upload Image</label><br>
    <div class="custom-file">
     <input type="file" class="custom-file-input" id="customFile" name="foto" accept="image/*">
     <label class="custom-file-label" for="customFile">Choose file</label>
   </div>
     <br/><br/>
+    <label>Product Thumbnail Alt.</label><br>
+		<input type="text" name="alt_teks" class="form-control">
+		 @if($errors->has('alt_teks'))
+            <div class="text-danger">
+             {{ $errors->first('alt_teks')}}
+           </div>
+        @endif
+		 <br/>
     <label>Link</label><br>
 		<input type="text" name="link" class="form-control" placeholder="isi Link...">
 		 @if($errors->has('link'))

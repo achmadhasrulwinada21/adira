@@ -63,6 +63,7 @@ class ServisController extends Controller
             'foto' =>'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required',
             'link' => 'required',
+            'alt_teks' => 'required',
          ]);
 
          // menyimpan data file yang diupload ke variabel $file
@@ -79,9 +80,10 @@ class ServisController extends Controller
             'foto' => $nama_file,
             'status' => $request->status,
             'link' => $request->link,
+            'alt_teks' => $request->alt_teks,
         ]);
         
-         Session::flash('sukses','Service Telah Ditambahkan');
+         Session::flash('sukses','Service has been Created');
         return redirect('/admin/servis');
     }
 
@@ -98,6 +100,7 @@ class ServisController extends Controller
         'foto' =>'file|image|mimes:jpeg,png,jpg|max:2048',
         'link' => 'required',
         'status' => 'required',
+        'alt_teks' => 'required',
     ]);
 
     $servis = Servis::find($id);
@@ -121,8 +124,9 @@ class ServisController extends Controller
 	$servis->ket = $request->ket;
     $servis->link = $request->link;
     $servis->status = $request->status;
+    $servis->alt_teks = $request->alt_teks;
     $servis->save();
-    Session::flash('sukses21','Service Telah Diupdate');
+    Session::flash('sukses21','Service has been Updated');
     return redirect('/admin/servis');
 }
 

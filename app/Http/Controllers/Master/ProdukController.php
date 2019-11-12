@@ -62,6 +62,7 @@ class ProdukController extends Controller
             'foto' =>'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required',
             'link' => 'required',
+            'alt_teks' => 'required',
          ]);
 
          // menyimpan data file yang diupload ke variabel $file
@@ -78,9 +79,10 @@ class ProdukController extends Controller
             'foto' => $nama_file,
             'status' => $request->status,
             'link' => $request->link,
+            'alt_teks' => $request->alt_teks,
         ]);
         
-         Session::flash('sukses','Produk Telah Ditambahkan');
+         Session::flash('sukses','Product has been Created');
         return redirect('/admin/produk');
     }
 
@@ -97,6 +99,7 @@ class ProdukController extends Controller
         'foto' =>'file|image|mimes:jpeg,png,jpg|max:2048',
         'link' => 'required',
         'status' => 'required',
+        'alt_teks' => 'required',
     ]);
 
     $produk = Produk::find($id);
@@ -120,8 +123,9 @@ class ProdukController extends Controller
 	$produk->ket = $request->ket;
     $produk->link = $request->link;
     $produk->status = $request->status;
+    $produk->alt_teks = $request->alt_teks;
     $produk->save();
-    Session::flash('sukses21','Produk Telah Diupdate');
+    Session::flash('sukses21','Product has been updated');
     return redirect('/admin/produk');
 }
 

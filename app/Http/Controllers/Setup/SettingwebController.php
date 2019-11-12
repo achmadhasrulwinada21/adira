@@ -90,7 +90,7 @@ class SettingwebController extends Controller
           $settingweb->nm_web = $request->nm_web;
           $settingweb->link_web = $request->link_web; 
           $settingweb->save();
-         Session::flash('sukses','Setup Telah Diupdate');
+         Session::flash('sukses','Setup Has Been Updated');
         return redirect('/admin/settingweb');
 
     }
@@ -112,9 +112,10 @@ class SettingwebController extends Controller
           $settingweb->alamat = $request->alamat;
           $settingweb->no_telp = $request->no_telp; 
           $settingweb->fax = $request->fax;
+          $settingweb->email = $request->email;
           $settingweb->copyright = $request->copyright; 
           $settingweb->save();
-         Session::flash('sukses21','Setup Telah Diupdate');
+         Session::flash('sukses21','Setup Has Been Updated');
         return redirect('/admin/settingweb');
 
     }
@@ -184,7 +185,7 @@ class SettingwebController extends Controller
           $settingweb->alt_teks_ig = $request->alt_teks_ig;
           $settingweb->alt_teks_twit = $request->alt_teks_twit;
           $settingweb->save();
-         Session::flash('sukses','Setup Telah Diupdate');
+         Session::flash('sukses','Setup Has Been Updated');
         return redirect('/admin/settingweb');
 
     }

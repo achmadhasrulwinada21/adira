@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manajemen Produk</h1>
+            <h1 class="m-0 text-dark">Management Product</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -35,19 +35,19 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header bg-info">Data Produk</div>
+                <div class="card-header bg-info">Data Product</div>
 
                 <div class="card-body">
-                   <a class="btn btn-success btn-sm" href="/produk/tambah"><i class="fa fa-plus">&nbsp Tambah Produk</i></a><br><br>
+                   <a class="btn btn-success btn-sm" href="/produk/tambah"><i class="fa fa-plus">&nbsp Add Product</i></a><br><br>
   <div class="table-responsive">
 	<table  class="table-hover table-striped table-bordered table-list tabelproduk">
                   <thead>
                     <tr style="vertical-align:middle;text-align:center;font-weigth:bold">
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Name</th>
                         <th>Link</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th>Action</th>
                       </tr> 
                   </thead>
                   <tbody><tbody>
